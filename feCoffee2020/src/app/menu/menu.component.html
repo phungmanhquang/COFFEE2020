@@ -1,0 +1,144 @@
+<section id="pageMenu" class="wrapper">
+    <div class="inner">
+        <div class="title">
+            <h3>Danh sách đồ phục vụ</h3>
+        </div>
+        <div class="list-product">
+            <div class="typeProduct">
+                <h3>Nước uống</h3>
+            </div>
+            <div class="product" *ngFor="let item of productTest.drink">
+                <div class="product_info">
+                    <img src="{{item.img}}" alt="">
+                    <div class="content">
+                        <div class="top">
+                            <span class="name">
+                          {{item.name}}
+                    </span>
+                            <span class="price">
+                          {{fomartMoney(item.price)}} vnd
+                    </span>
+                        </div>
+                        <div class="bottom">
+                            <p>{{item.summary}}</p>
+                            <div class="acction">
+                                <span class="view" (click)="showDetailProduct(item)">Xem thêm</span>
+                                <button class="add" (click)="selectProd(item)">Chọn mua</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="typeProduct">
+                <h3>Đồ ăn</h3>
+            </div>
+            <div class="product" *ngFor="let item of productTest.food">
+                <div class="product_info">
+                    <img src="{{item.img}}" alt="">
+                    <div class="content">
+                        <div class="top">
+                            <span class="name">
+                          {{item.name}}
+                    </span>
+                            <span class="price">
+                          {{fomartMoney(item.price)}} vnd
+                    </span>
+                        </div>
+                        <div class="bottom">
+                            <p>{{item.summary}}</p>
+                            <div class="acction">
+                                <span class="view" (click)="showDetailProduct(item)">Xem thêm</span>
+                                <button class="add" (click)="selectProd(item)">Chọn mua</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="typeProduct">
+                <h3>Kem</h3>
+            </div>
+            <div class="product" *ngFor="let item of productTest.cream">
+                <div class="product_info">
+                    <img src="{{item.img}}" alt="">
+                    <div class="content">
+                        <div class="top">
+                            <span class="name">
+                          {{item.name}}
+                    </span>
+                            <span class="price">
+                          {{fomartMoney(item.price)}} vnd
+                    </span>
+                        </div>
+                        <div class="bottom">
+                            <p>{{item.summary}}</p>
+                            <div class="acction">
+                                <span class="view" (click)="showDetailProduct(item)">Xem thêm</span>
+                                <button class="add" (click)="selectProd(item)">Chọn mua</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="modal" *ngIf="showDetail || showCart" (click)="close()">
+
+</div>
+
+<div id="producDetail" *ngIf="showDetail">
+    <a class="closeProductDetail" (click)="close()"><i class="fa fa-times-circle" aria-hidden="true"></i></a>
+    <div class="imgProduct">
+        <div class="mainImg">
+            <div class="mainImg_img">
+                <img src="{{productMainImg}}" alt="">
+            </div>
+        </div>
+        <div class="listImg">
+            <div class="listImg_item" *ngFor="let item of ProductDetail.listImg" (click)="onChangeMainImg(item)">
+                <img src="{{item}}" alt="">
+            </div>
+        </div>
+    </div>
+    <div class="infoProduct">
+        <div class="content">
+            <div class="name">
+                {{ProductDetail.name}}
+            </div>
+            <div class="price">
+                <p>{{fomartMoney(ProductDetail.price)}} vnd</p>
+            </div>
+            <div class="mainContent">
+                <div class="intro">
+                    <p>{{ProductDetail.summary}}{{ProductDetail.summary}}</p>
+                </div>
+                <div class="action">
+                    <div class="addNumber">
+                        <button class="sub" (click)="subQuantity()">-</button>
+                        <div class="displayNumber">
+                            {{quantytiSelect}}
+                        </div>
+                        <button class="sup" (click)="supQuantity()">+</button>
+                    </div>
+                    <div class="addToCart">
+                        <button (click)="addToCart()">Thêm vào giỏ hàng</button>
+                    </div>
+                </div>
+                <div class="detailContent">
+                    <ul>
+                        <li>Mã sản phầm: {{ProductDetail.id}}</li>
+                        <li>Thể loại: {{ProductDetail.type}}</li>
+                        <li>Thể tich: 500ml</li>
+                        <li>Nguyên liệu chính : Đương, nước ...</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<app-cart [listProduct]="productsSelected" [totalPrice]="totalPrice" [totalSelect]="totalSelect" *ngIf="showCart" (cartEvent)="eventCart($event)"></app-cart>
+<a class="cart" *ngIf="totalSelect > 0" (click)="onShowCart()">
+    <i class="fa fa-cart-plus" aria-hidden="true"></i>
+    <i class="numberCart">{{totalSelect}}</i>
+</a>

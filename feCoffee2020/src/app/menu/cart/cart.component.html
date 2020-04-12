@@ -1,0 +1,71 @@
+<div id="cartDetail">
+    <a class="close" (click)="functionCallOut('close', null)"><i class="fa fa-times-circle" aria-hidden="true"></i></a>
+    <!-- <div class="alertConfirm">
+      <div class="alert-header">
+          Thông báo
+      </div>
+      <div class="alert-body">
+          <p>
+              Bạn có muốn xóa "<span>Nuoc Uong ABC </span>" ra khỏi giỏi hàng ?
+          </p>
+      </div>
+      <div class="alert-action">
+          <a class="NO">Không</a>
+          <a class="YES">Có</a>
+      </div>
+  </div>
+  <div class="modal-alert">
+
+  </div> -->
+    <div class="cartBody">
+        <h3>Thông tin giỏ hàng</h3>
+        <div class="listProductSelected">
+            <table>
+                <thead>
+                    <tr>
+                        <th class="infoImg"></th>
+                        <th class="infoName">Tên sản phẩm</th>
+                        <th class="infoPrice">Giá </th>
+                        <th class="infoQuantity">Số lượng</th>
+                        <th class="acction"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let item of listProduct">
+                        <td class="infoImg"><img src="{{item.image}}" alt=""></td>
+                        <td class="infoName">
+                            <p>{{item.name}}</p>
+                        </td>
+                        <td class="infoPrice">
+                            <p><span>{{fomartMoney(item.price)}}</span> vnđ</p>
+                        </td>
+                        <td class="infoQuantity">
+                            <div class="detailQuantity">
+                                <button class="sub" (click)="functionCallOut('removeProd',item)">-</button>
+                                <p>
+                                    {{item.quantity}}
+                                </p>
+                                <button class="sup" (click)="functionCallOut('selectProd',item)">+</button>
+                            </div>
+                        </td>
+                        <td class="acction"><a class="removeProduct" (click)="functionCallOut('deleteProd',item)"><i class="fa fa-times-circle" aria-hidden="true"></i></a></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="cartAction">
+            <div class="totalTitle">
+                <p>Tổng</p>
+            </div>
+            <div class="totalPrice">
+                <p><span>{{fomartMoney(totalPrice)}}</span> vnđ</p>
+            </div>
+            <div class="totalQuantity">
+                <p><span>{{totalSelect}}</span> sp</p>
+            </div>
+            <div class="totalAction">
+                <a>Đặt hàng</a>
+            </div>
+        </div>
+    </div>
+</div>
