@@ -1,0 +1,50 @@
+<div id="producDetail" [ngClass]="{isShowDetail: showDetail}">
+    <a class="closeProductDetail" (click)="callOut('close', null)"><i class="fa fa-times-circle" aria-hidden="true"></i></a>
+    <div class="imgProduct">
+        <div class="mainImg">
+            <div class="mainImg_img">
+                <img src="{{productMainImg}}" alt="">
+            </div>
+        </div>
+        <div class="listImg">
+            <div class="listImg_item" *ngFor="let item of ProductDetail?.listImg" (click)="onChangeMainImg(item)">
+                <img src="{{item}}" alt="">
+            </div>
+        </div>
+    </div>
+    <div class="infoProduct">
+        <div class="content">
+            <div class="name">
+                {{ProductDetail?.name}}
+            </div>
+            <div class="price">
+                <p>{{fomartMoney(ProductDetail?.price)}} vnd</p>
+            </div>
+            <div class="mainContent">
+                <div class="intro">
+                    <p>{{ProductDetail?.summary}}{{ProductDetail?.summary}}</p>
+                </div>
+                <div class="action">
+                    <div class="addNumber">
+                        <button class="sub" (click)="callOut('sub', null)">-</button>
+                        <div class="displayNumber">
+                            {{quantytiSelect}}
+                        </div>
+                        <button class="sup" (click)="callOut('sup', null)">+</button>
+                    </div>
+                    <div class="addToCart">
+                        <button (click)="callOut('addToCart', null)">Thêm vào giỏ hàng</button>
+                    </div>
+                </div>
+                <div class="detailContent">
+                    <ul>
+                        <li>Mã sản phầm: {{ProductDetail?.id}}</li>
+                        <li>Thể loại: {{ProductDetail?.type}}</li>
+                        <li>Thể tich: 500ml</li>
+                        <li>Nguyên liệu chính : Đương, nước ...</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

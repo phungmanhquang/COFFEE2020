@@ -1,0 +1,85 @@
+<section id="CartDetail">
+    <div id="coverImg" class="wrapper">
+
+    </div>
+    <div id="infoBrand" class="wrapper">
+        <!-- <div class="filterBg"></div> -->
+        <div class="inner">
+            <div class="contentInfoBrand">
+                <div class="logoBrand">
+                    <div class="logoBrand_img">
+                        <img src="../../assets/img/Logo.png" alt="">
+                    </div>
+                    <div class="infoDetail">
+                        <div class="name">
+                            Charkra coffe
+                        </div>
+                        <div class="address">
+                            <i class="fa fa-map-marker" aria-hidden="true"></i> Tân Xã, Thạch Thất, Hà Nội
+                        </div>
+                    </div>
+                </div>
+                <div class="Delivery">
+                    <div class="iconDelivery">
+                        <img src="../../assets/img/logoDelivery.png" alt="">
+                    </div>
+                    <div class="infoDelivery">
+                        <div class="free">Giao Hàng Miễn Phí: <span style="color: #15d015;">3 Km</span></div>
+                        <div class="min">Đơn hàng tối thiểu: <span style="color: #ff8862;">100.000 vnđ</span></div>
+                    </div>
+                </div>
+                <div class="timeNow">
+                    <p>
+                        <span class="hours">{{time.h}} </span>:
+                        <span class="minutes">{{time.m}} </span>:
+                        <span class="seccons">{{time.s}} </span>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="contentCart" class="wrapper">
+        <div class="inner mainContent">
+            <p class="titleMainConten">Thông tin đơn hàng</p>
+            <div id="listProduct" class="itemContent">
+                <p class="titleListProduct">Danh sách sản phẩm</p>
+                <div class="outsideContent">
+                    <div class="insideContent insideProduct">
+                        <div id="ListProduct">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th colspan="2" class="name">Sản phẩm</th>
+                                        <th class="text-left price left-10">Giá</th>
+                                        <th class="text-center quantity left-10">Số lượng</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let item of listProduct">
+                                        <td class="imgProd"><img src="{{item.image}}" alt=""></td>
+                                        <td class="text-left">{{item.name}}</td>
+                                        <td class="left-10"><span class="priceDetail">{{fomartMoney(item.price)}}</span> vnd</td>
+                                        <td class="text-center"><span class="quantytiDetail">{{item.quantity}}</span></td>
+                                    </tr>
+
+                                    <tr class="total">
+                                        <td colspan="2" class="text-center text">Tổng</td>
+                                        <td class="left-10"><span class="priceTotal">{{fomartMoney(totalPrice)}}</span> vnd</td>
+                                        <td class="text-center"><span class="quantytiToal">{{totalSelect}}</span></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="OrderForm" class="itemContent">
+                <p class="titleForm">Thông tin đặt hàng</p>
+                <div class="outsideContent">
+                    <order-form></order-form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

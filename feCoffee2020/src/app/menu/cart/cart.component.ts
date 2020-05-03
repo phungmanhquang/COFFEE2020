@@ -1,4 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter  } from '@angular/core';
+import { Router } from '@angular/router';
+import { HandleDataService } from 'src/app/service/handle-data.service';
+import { IProductSelect } from 'src/app/share/Model/productSelect.model';
 
 @Component({
   selector: 'app-cart',
@@ -6,15 +9,17 @@ import { Component, OnInit, Input, Output, EventEmitter  } from '@angular/core';
   styleUrls: ['./cart.component.scss']
 })
 export class CartComponent implements OnInit {
-  @Input() listProduct ;
+  @Input() listProduct : IProductSelect[] ;
   @Input() totalPrice;
   @Input() totalSelect;
   @Output() cartEvent = new EventEmitter();
-  constructor() { }
+  @Input() showCart: boolean = false;
+  constructor(
+    private router: Router,
+    private handleDataService: HandleDataService
+  ) { }
 
   ngOnInit() {
-    console.log("CartComponent listProduct ::: ", this.listProduct);
-    
   }
   functionCallOut(type,item){
     let eventOutput = {
@@ -30,5 +35,9 @@ export class CartComponent implements OnInit {
     } else {
         return value;
     }
+  }
+  onSubmitToCartDetail(){
+    this.handleDataService.setDataCart(this.listProduct);
+    this.router.navigate(['/cart'])
   }
 }

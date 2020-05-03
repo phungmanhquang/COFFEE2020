@@ -1,4 +1,4 @@
-<div id="cartDetail">
+<div id="cartDetail" [ngClass]="{isShowCart: showCart}">
     <a class="close" (click)="functionCallOut('close', null)"><i class="fa fa-times-circle" aria-hidden="true"></i></a>
     <!-- <div class="alertConfirm">
       <div class="alert-header">
@@ -23,8 +23,8 @@
             <table>
                 <thead>
                     <tr>
-                        <th class="infoImg"></th>
-                        <th class="infoName">Tên sản phẩm</th>
+                        <!-- <th class="infoImg"></th> -->
+                        <th class="infoName" colspan="2">Tên sản phẩm</th>
                         <th class="infoPrice">Giá </th>
                         <th class="infoQuantity">Số lượng</th>
                         <th class="acction"></th>
@@ -64,7 +64,7 @@
                 <p><span>{{totalSelect}}</span> sp</p>
             </div>
             <div class="totalAction">
-                <a>Đặt hàng</a>
+                <a (click)="onSubmitToCartDetail()">Đặt hàng</a>
             </div>
         </div>
     </div>

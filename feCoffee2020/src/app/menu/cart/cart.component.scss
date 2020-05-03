@@ -1,10 +1,10 @@
 #cartDetail {
     position: fixed;
     top: 0;
-    right: 0;
+    right: -750px;
     z-index: 1050;
     padding-top: 8px;
-    width: 40%;
+    width: 650px;
     height: 100%;
     background: #fff;
     z-index: 2;
@@ -12,11 +12,8 @@
     flex-direction: row;
     justify-content: space-between;
     padding: 10px;
-    transition: all .2s;
-    animation-name: intro;
-    animation-duration: .3s;
-    animation-timing-function: ease-in-out;
-    animation-fill-mode: forwards;
+    transition: all .3s;
+    filter: brightness(0.6);
     .close {
         position: absolute;
         top: -1px;
@@ -135,6 +132,9 @@
                         th {
                             text-align: left;
                             font-size: 1.3em;
+                        }
+                        .infoName {
+                            text-align: center;
                         }
                         .infoPrice {
                             // text-align: center;
@@ -276,11 +276,86 @@
     }
 }
 
-@keyframes intro {
-    from {
-        right: -50%;
+.isShowCart {
+    right: 0 !important;
+    filter: brightness(1) !important;
+}
+
+@media (min-width: 481px) and (max-width: 767px) {
+    #cartDetail {
+        width: 90% !important;
     }
-    to {
-        right: 0;
+    thead {
+        .infoQuantity,
+        .infoPrice {
+            text-align: left !important;
+        }
+    }
+    tbody {
+        .infoPrice {
+            width: 110px !important;
+        }
+        .infoImg {
+            width: 85px !important;
+            img {
+                width: 100% !important;
+            }
+        }
+    }
+}
+
+@media (max-width: 480px) {
+    #cartDetail {
+        width: 93% !important;
+    }
+    thead {
+        .infoQuantity,
+        .infoPrice {
+            text-align: left !important;
+        }
+        th {
+            font-size: 1em !important;
+        }
+    }
+    tbody {
+        .infoPrice {
+            width: 65px !important;
+            p {
+                font-size: 0.8em !important;
+                span {
+                    font-size: 1em !important;
+                }
+            }
+        }
+        .infoImg {
+            width: 45px !important;
+            img {
+                width: 100% !important;
+                height: 50px !important;
+            }
+        }
+        .infoName {
+            font-size: 1em !important;
+        }
+        .infoQuantity {
+            font-size: 1em !important;
+            .detailQuantity {
+                p {
+                    width: 25px !important;
+                }
+            }
+        }
+    }
+    .cartAction {
+        .totalTitle {
+            width: 30% !important;
+            font-size: 1.2em !important;
+        }
+        .totalPrice,
+        .totalQuantity {
+            span {
+                font-size: 1.2em !important;
+            }
+        }
     }
 }

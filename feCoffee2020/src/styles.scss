@@ -19,3 +19,22 @@ button {
     justify-content: center;
     align-items: center;
 }
+
+* {
+    padding: 0;
+    margin: 0;
+}
+
+.wrapper>.inner {
+    margin-left: auto;
+    margin-right: auto;
+    width: 1280px;
+}
+
+@media (max-width: 1281px) {
+    .wrapper>.inner {
+        margin-left: auto;
+        margin-right: auto;
+        width: 100%;
+    }
+}

@@ -1,0 +1,32 @@
+<div class="insideContent insideForm">
+    <form id="ORDERFORM">
+        <div class="itemForm">
+            <input type="text">
+            <label for="name">Họ và tên</label>
+        </div>
+        <div class="itemForm">
+            <input type="text">
+            <label for="name">Địa chỉ</label>
+        </div>
+        <div class="itemForm">
+            <input type="text">
+            <label for="name">Số điện thoại</label>
+        </div>
+        <div class="itemForm">
+            <textarea name="" id="" cols="30" rows="10"></textarea>
+            <label for="name">Ghi chú</label>
+        </div>
+        <div class="itemForm">
+            <button class="btnOrder" (click)="order(); $event.preventDefault()">Đặt Hàng</button>
+        </div>
+    </form>
+</div>
+<div class="modal" *ngIf="success">
+    <div id="success" *ngIf="success">
+        <p class="text1">Đặt Hàng Thàng Công !</p>
+        <p class="text2">Cảm ơn quí khách! Chúng tôi sẽ giao tới sớm nhất!</p>
+        <p class="icon">
+            <i class="fa fa-check-circle-o" aria-hidden="true"></i>
+        </p>
+    </div>
+</div>

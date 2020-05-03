@@ -1,13 +1,16 @@
 import { Component, OnInit } from '@angular/core';
-import { IProductSelect} from '../share/Modal/productSelect.modal';
+import { IProductSelect} from '../share/Model/productSelect.model';
+import { HandleDataService } from '../service/handle-data.service';
+
+
+
 @Component({
   selector: 'app-menu',
   templateUrl: './menu.component.html',
   styleUrls: ['./menu.component.scss']
 })
 export class MenuComponent implements OnInit {
-  productTest = {
-    drink : [
+  productTest = [
       {
         id: 'trachanh',
         img : '../../assets/product/trachanh.jfif',
@@ -77,10 +80,7 @@ export class MenuComponent implements OnInit {
           '../../assets/product/KemDua.jpg',
           '../../assets/product/pizza.jpg'
         ]
-      },
-      
-    ],
-    food : [
+      },      
       {
         id: 'banhngot',
         img : '../../assets/product/thanhhuong-185910025942-cheese.jpg',
@@ -122,9 +122,7 @@ export class MenuComponent implements OnInit {
           '../../assets/product/KemDua.jpg',
           '../../assets/product/pizza.jpg'
         ]
-      }
-    ],
-    cream : [
+      },
       {
         id: 'kemtuoi',
         img : '../../assets/product/2kinh-doanh-kem-tuoi-hieu-qua.jpg',
@@ -152,9 +150,11 @@ export class MenuComponent implements OnInit {
           '../../assets/product/KemDua.jpg',
           '../../assets/product/pizza.jpg'
         ]
-      },
+      }
     ]
-  }
+  DRINKS = [];
+  FOODS = [];
+  CREAMS = [];
   //alert messeage
   showAlert: false;
   //alert messeage
@@ -165,12 +165,21 @@ export class MenuComponent implements OnInit {
   ProductDetail : any;
   productMainImg : String;
   showDetail : boolean = false;
-  productsSelected = [];
-
+  productsSelected:IProductSelect[] = [];
+  fixedButton = false;
   constructor(
+    private handleDataService: HandleDataService
   ) { }
 
   ngOnInit() {
+    this.DRINKS = this.productTest.filter(p=> p.type == 'drink');
+    this.FOODS = this.productTest.filter(p=> p.type == 'food');
+    this.CREAMS = this.productTest.filter(p=> p.type == 'cream');
+    window.addEventListener('scroll', this.scroll, true);
+    if(this.handleDataService.isDataCart()){
+      this.productsSelected = this.handleDataService.getDataCartLocal();
+      this.cartRefresh();
+    }
   }
   //ACTION ADD TO CART
   addToCart(){
@@ -214,7 +223,7 @@ export class MenuComponent implements OnInit {
       }
     }
     this.cartRefresh();
-    console.log("productsSelected ::: ", this.productsSelected);
+    // console.log("productsSelected ::: ", this.productsSelected);
   }
   // SELECT ITEM
   subQuantity(){
@@ -291,11 +300,12 @@ export class MenuComponent implements OnInit {
       }
       this.showDetail = true;
   }
+  randomSelectProduct(){
+    let _product = this.productTest[Math.floor(Math.random()*this.productTest.length)]
+    this.showDetailProduct(_product)
+  }
   onShowCart(){
     this.showCart = true;
-  }
-  onChangeMainImg(url){
-    this.productMainImg = url;
   }
   close(){
     this.quantytiSelect = 0;
@@ -326,4 +336,24 @@ export class MenuComponent implements OnInit {
       break;
     }
   }
+  eventDetail(event){
+    switch (event.type) {
+      case 'close':
+        this.close();
+        break;
+      case 'sub':
+        this.subQuantity();
+        break;
+      case 'sup':
+        this.supQuantity()
+        break;
+      case 'addToCart':
+        this.addToCart()
+        break;
+    }
+  }
+  scroll = (event): void => {
+    if(event.target.documentElement.scrollTop > 122) this.fixedButton = true;
+    else this.fixedButton = false;
+  };
 }
