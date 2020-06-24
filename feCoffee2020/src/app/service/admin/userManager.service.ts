@@ -4,12 +4,12 @@ import { AngularFirestore } from '@angular/fire/firestore';
 @Injectable({
   providedIn: 'root'
 })
-export class PolicyService {
+export class UserManagerService {
 
   constructor(
     private firestore: AngularFirestore
   ) { }
-  getPolicies() {
-    return this.firestore.collection('products').snapshotChanges();
+  getUser() {
+    return this.firestore.collection('user', ref => ref.orderBy('timeRegister')).snapshotChanges();
   }
 }

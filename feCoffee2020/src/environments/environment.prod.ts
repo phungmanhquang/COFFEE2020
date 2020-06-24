@@ -1,6 +1,7 @@
 export const environment = {
   production: true,
   CART_CURRENT: 'cartCurrent_COFFE2020',
+  USER_CURRENT: 'userCurrent_COFFE2020',
   firebaseConfig : {
     apiKey: "AIzaSyCxn6zBr_PAYEAok5Xp1EgcTRBBQuGF6JE",
     authDomain: "coffe2020.firebaseapp.com",

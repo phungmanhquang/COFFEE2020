@@ -1,0 +1,40 @@
+<p class="titleMainConten">Thông tin đơn hàng</p>
+<div id="listProduct" class="itemContent">
+    <p class="titleListProduct">Danh sách sản phẩm</p>
+    <div class="outsideContent">
+        <div class="insideContent insideProduct">
+            <div id="ListProduct">
+                <table>
+                    <thead>
+                        <tr>
+                            <th colspan="2" class="name">Sản phẩm</th>
+                            <th class="text-left price left-10">Giá</th>
+                            <th class="text-center quantity left-10">Số lượng</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let item of listProduct">
+                            <td class="imgProd"><img src="{{item.image}}" alt=""></td>
+                            <td class="text-left">{{item.name}}</td>
+                            <td class="left-10"><span class="priceDetail">{{fomartMoney(item.price)}}</span> vnd</td>
+                            <td class="text-center"><span class="quantytiDetail">{{item.quantity}}</span></td>
+                        </tr>
+
+                        <tr class="total">
+                            <td colspan="2" class="text-center text">Tổng</td>
+                            <td class="left-10"><span class="priceTotal">{{fomartMoney(totalPrice)}}</span> vnd</td>
+                            <td class="text-center"><span class="quantytiToal">{{totalSelect}}</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="OrderForm" class="itemContent">
+    <p class="titleForm">Thông tin đặt hàng</p>
+    <div class="outsideContent">
+        <order-form></order-form>
+
+    </div>
+</div>

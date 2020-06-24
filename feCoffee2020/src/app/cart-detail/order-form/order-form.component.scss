@@ -4,6 +4,7 @@
     border-radius: 4px;
     box-shadow: 0 0 3px 0 #FF5722;
     margin: 0 auto;
+    background: #fff;
     #ORDERFORM {
         padding: 10px 5px;
         .itemForm {
@@ -85,6 +86,11 @@
         font-size: 4em;
         color: green;
     }
+}
+
+.errorInput {
+    font-size: 0.4em;
+    color: #FF5722;
 }
 
 @media (max-width: 1281px) {}

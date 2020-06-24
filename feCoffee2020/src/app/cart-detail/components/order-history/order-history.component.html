@@ -1,0 +1,106 @@
+<p class="titleMainConten">Lịch sử đơn hàng</p>
+<div class="ListOrder">
+    <div class="ListOrder-content">
+        <div *ngFor="let item of listOrder" class="item-order" [ngClass]="{'DONE': item.status == 'done', 'WAITTING': item.status == 'waitting' || item.status == 'doing', 'CANCEL': item.status == 'cancel' }">
+            <div class="order-info">
+                <div class="status">
+                    <p *ngIf="item.status == 'done'">Hoàn thành</p>
+                    <p *ngIf="item.status == 'cancel'">Đã hủy</p>
+                    <p *ngIf="item.status == 'doing'">Đang thực hiện</p>
+                    <p *ngIf="item.status == 'waitting'">Chờ xác nhận</p>
+                </div>
+                <div class="timeOrder">
+                    <p class="titleOderInfo">Thời gian đặt hàng</p>
+                    <p>{{item.orderTime.toMillis() | date:'yyyy/MM/dd h:mm:ss a'}}</p>
+                </div>
+                <div class="endTime">
+                    <p class="titleOderInfo">Thời gian hoàn thành</p>
+                    <div *ngIf="item.endTime">{{item.endTime.toMillis() | date:'yyyy/MM/dd h:mm:ss a'}}</div>
+                    <div *ngIf="!item.endTime">Chưa hoàn thành</div>
+                </div>
+            </div>
+            <div class="list-product-order">
+                <div class="list-order">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th colspan="3">Danh sách sản phẩm</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let product of item.listProduct">
+                                <td class="dots nameProductOrder">
+                                    <span class="field">{{product.nameItem}}</span>
+                                </td>
+                                <td>{{product.quantity}}</td>
+                                <td><span class="titleOderInfo">x </span>{{fomartMoney(product.price)}} vnd</td>
+                            </tr>
+                            <!-- <tr>
+                                <td class="dots nameProductOrder">
+                                    <span class="field">Tra chanh</span>
+                                </td>
+                                <td>1</td>
+                                <td><span class="titleOderInfo">x </span>12000 vnd</td>
+                            </tr>
+                            <tr>
+                                <td class="dots nameProductOrder">
+                                    <span class="field">Kem</span>
+                                </td>
+                                <td>1</td>
+                                <td><span class="titleOderInfo">x </span>12000 vnd</td>
+                            </tr>
+                            <tr>
+                                <td class="dots nameProductOrder">
+                                    <span class="field">Nuoc Cam Cam</span>
+                                </td>
+                                <td>1</td>
+                                <td><span class="titleOderInfo">x </span>12000 vnd</td>
+                            </tr>
+                            <tr>
+                                <td class="dots nameProductOrder">
+                                    <span class="field">Tra chanh</span>
+                                </td>
+                                <td>1</td>
+                                <td><span class="titleOderInfo">x </span>12000 vnd</td>
+                            </tr>
+                            <tr>
+                                <td class="dots nameProductOrder">
+                                    <span class="field">Tra chanh</span>
+                                </td>
+                                <td>1</td>
+                                <td><span class="titleOderInfo">x </span>12000 vnd</td>
+                            </tr>
+                            <tr>
+                                <td class="dots nameProductOrder">
+                                    <span class="field">Kem</span>
+                                </td>
+                                <td>1</td>
+                                <td><span class="titleOderInfo">x </span>12000 vnd</td>
+                            </tr>
+                            <tr>
+                                <td class="dots nameProductOrder">
+                                    <span class="field">Nuoc Cam Cam</span>
+                                </td>
+                                <td>1</td>
+                                <td><span class="titleOderInfo">x </span>12000 vnd</td>
+                            </tr> -->
+                        </tbody>
+                    </table>
+                </div>
+                <div class="total-order">
+                    <div class="quantity-order">
+                        <p class="titleOderInfo">Tổng số lượng</p>
+                        <p class="content-order-total">20</p>
+                    </div>
+                    <div class="price-order">
+                        <p class="titleOderInfo">Tổng tiền</p>
+                        <p class="content-order-total">{{fomartMoney(item.totalprice)}} vnd</p>
+                    </div>
+                    <div class="action-order">
+                        <button *ngIf="item.status == 'doing'">Đã nhận hàng</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

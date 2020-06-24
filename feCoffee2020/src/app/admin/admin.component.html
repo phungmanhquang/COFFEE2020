@@ -1,1 +1,16 @@
-<p>admin works!</p>
+<div class="wrapper" id="menu-admin">
+    <div class="inner menu-main">
+        <div class="admin-brand">
+            <img src="../../assets/img/Logo.png" alt="">
+        </div>
+        <div class="admin-nav">
+            <ul class="admin-nav-list">
+                <li class="admin-nav-item"><a routerLink="user" routerLinkActive="active" class="admin-nav-link">User</a></li>
+                <li class="admin-nav-item"><a routerLink="order" routerLinkActive="active" class="admin-nav-link">Order</a></li>
+                <li class="admin-nav-item"><a routerLink="dashboard" routerLinkActive="active" class="admin-nav-link">Dashboard</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<router-outlet></router-outlet>

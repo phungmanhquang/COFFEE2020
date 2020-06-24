@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { IProductSelect} from '../share/Model/productSelect.model';
 import { HandleDataService } from '../service/handle-data.service';
-
+import { ProductService } from '../service/product.service';
+import { Product } from '../share/Model/product.model'
 
 
 @Component({
@@ -167,8 +168,10 @@ export class MenuComponent implements OnInit {
   showDetail : boolean = false;
   productsSelected:IProductSelect[] = [];
   fixedButton = false;
+  listProduct: Product[]  
   constructor(
-    private handleDataService: HandleDataService
+    private handleDataService: HandleDataService,
+    private productService: ProductService
   ) { }
 
   ngOnInit() {
@@ -180,6 +183,22 @@ export class MenuComponent implements OnInit {
       this.productsSelected = this.handleDataService.getDataCartLocal();
       this.cartRefresh();
     }
+    // this.productService.getListProduct().subscribe(
+    //   result => {
+    //     this.listProduct = result.map(
+    //       prod => {
+    //         return {
+    //           id: prod.payload.doc.id,
+    //           ...prod.payload.doc.data() as {}
+    //         } as Product
+    //       }
+    //     )
+    //     console.log("listProduct :::", this.listProduct)
+    //     this.DRINKS = this.listProduct.filter(p=> p.type == 'drink');
+    //     this.FOODS = this.listProduct.filter(p=> p.type == 'food');
+    //     this.CREAMS = this.listProduct.filter(p=> p.type == 'cream');
+    //   }
+    // )
   }
   //ACTION ADD TO CART
   addToCart(){
@@ -222,6 +241,7 @@ export class MenuComponent implements OnInit {
         }
       }
     }
+    this.handleDataService.setDataCartLocal(this.productsSelected);
     this.cartRefresh();
     // console.log("productsSelected ::: ", this.productsSelected);
   }
@@ -301,6 +321,7 @@ export class MenuComponent implements OnInit {
       this.showDetail = true;
   }
   randomSelectProduct(){
+    // let _product = this.listProduct[Math.floor(Math.random()*this.listProduct.length)]
     let _product = this.productTest[Math.floor(Math.random()*this.productTest.length)]
     this.showDetailProduct(_product)
   }
@@ -353,7 +374,7 @@ export class MenuComponent implements OnInit {
     }
   }
   scroll = (event): void => {
-    if(event.target.documentElement.scrollTop > 122) this.fixedButton = true;
+    if(event.target.documentElement.scrollTop > 90) this.fixedButton = true;
     else this.fixedButton = false;
   };
 }

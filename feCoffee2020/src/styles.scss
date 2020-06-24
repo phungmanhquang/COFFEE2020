@@ -2,6 +2,14 @@
 
 body {
     font-family: 'Fira Sans Extra Condensed', sans-serif;
+    background: #f6f6f6;
+    overflow-y: scroll;
+    &::-webkit-scrollbar {
+        display: none;
+    }
+    & {
+        -ms-overflow-style: none;
+    }
 }
 
 button {
@@ -23,6 +31,22 @@ button {
 * {
     padding: 0;
     margin: 0;
+    transition: .3s;
+}
+
+order-info,
+order-history {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+order-info {
+    border-top: 2px double green;
+}
+
+order-history {
+    border-top: 2px double red;
 }
 
 .wrapper>.inner {

@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { HandleDataService } from '../service/handle-data.service';
 import { IProductSelect } from '../share/Model/productSelect.model';
+import { AccountService } from '../service/account.service';
+import { User } from '../share/Model/user.model';
+import { Router } from '@angular/router';
+ 
 
 @Component({
   selector: 'app-cart-detail',
@@ -16,8 +20,11 @@ export class CartDetailComponent implements OnInit {
   listProduct: IProductSelect[];
   totalSelect: number;
   totalPrice: number;
+  user: User;
   constructor(
-    private handleDataService: HandleDataService
+    private handleDataService: HandleDataService,
+    private accountService: AccountService,
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -26,6 +33,7 @@ export class CartDetailComponent implements OnInit {
     //     this.listProduct = result;
     //   }
     // )
+    this.user = this.accountService.getUser();
     if(this.handleDataService.isDataCart()){
       this.listProduct = this.handleDataService.getDataCartLocal();
       this.cartRefresh(this.listProduct)
@@ -60,5 +68,11 @@ export class CartDetailComponent implements OnInit {
     } else {
         return value;
     }
+  }
+  logout(){
+    this.accountService.signOut();
+  }
+  backToMenu(){
+    this.router.navigate(['/menu']);
   }
 }

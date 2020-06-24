@@ -1,10 +1,10 @@
 <section id="CartDetail">
-    <div id="coverImg" class="wrapper">
-
-    </div>
+    <div id="coverImg" class="wrapper"></div>
     <div id="infoBrand" class="wrapper">
-        <!-- <div class="filterBg"></div> -->
         <div class="inner">
+            <div class="actionLogout">
+                <button (click)="logout()">Đăng xuất</button>
+            </div>
             <div class="contentInfoBrand">
                 <div class="logoBrand">
                     <div class="logoBrand_img">
@@ -38,48 +38,31 @@
             </div>
         </div>
     </div>
+    <!-- https://www.techiediaries.com/angular-firebase/angular-9-8-firestore-database-crud-tutorial/ -->
     <div id="contentCart" class="wrapper">
         <div class="inner mainContent">
-            <p class="titleMainConten">Thông tin đơn hàng</p>
-            <div id="listProduct" class="itemContent">
-                <p class="titleListProduct">Danh sách sản phẩm</p>
-                <div class="outsideContent">
-                    <div class="insideContent insideProduct">
-                        <div id="ListProduct">
-                            <table>
-                                <thead>
-                                    <tr>
-                                        <th colspan="2" class="name">Sản phẩm</th>
-                                        <th class="text-left price left-10">Giá</th>
-                                        <th class="text-center quantity left-10">Số lượng</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr *ngFor="let item of listProduct">
-                                        <td class="imgProd"><img src="{{item.image}}" alt=""></td>
-                                        <td class="text-left">{{item.name}}</td>
-                                        <td class="left-10"><span class="priceDetail">{{fomartMoney(item.price)}}</span> vnd</td>
-                                        <td class="text-center"><span class="quantytiDetail">{{item.quantity}}</span></td>
-                                    </tr>
-
-                                    <tr class="total">
-                                        <td colspan="2" class="text-center text">Tổng</td>
-                                        <td class="left-10"><span class="priceTotal">{{fomartMoney(totalPrice)}}</span> vnd</td>
-                                        <td class="text-center"><span class="quantytiToal">{{totalSelect}}</span></td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
+            <div class="backMenu">
+                <button (click)="backToMenu()">Về trang menu</button>
+            </div>
+            <div id="profile" [ngClass]="{profileGG: user.provider == 'GOOGLE'}">
+                <div class="avt">
+                    <img src="{{user.photoUrl}}" alt="" [ngClass]="{ 'ggImgUrl' : user.provider == 'GOOGLE'}">
+                    <i class="fa fa-facebook fb" aria-hidden="true" *ngIf="user.provider == 'FACEBOOK'"></i>
+                    <i class="fa fa-google gg" aria-hidden="true" *ngIf="user.provider == 'GOOGLE'"></i>
+                </div>
+                <div class="name" [ngClass]="{nameGG: user.provider == 'GOOGLE'}">
+                    {{user.name}}
                 </div>
             </div>
-            <div id="OrderForm" class="itemContent">
-                <p class="titleForm">Thông tin đặt hàng</p>
-                <div class="outsideContent">
-                    <order-form></order-form>
-
+            <div class="nav-order">
+                <div class="nav-order-content">
+                    <ul class="list-nav-order">
+                        <li class="item-nav-order"><a routerLink="orderInfo" routerLinkActive="active" class="link-nav-order infoOrder">Thông tin đơn hàng</a></li>
+                        <li class="item-nav-order"><a routerLink="orderHistory" routerLinkActive="active" class="link-nav-order historyOrder">Lich sử đơn hàng</a></li>
+                    </ul>
                 </div>
             </div>
+            <router-outlet></router-outlet>
         </div>
     </div>
 </section>

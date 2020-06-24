@@ -1,0 +1,60 @@
+<div class="wrapper" id="user-admin">
+    <div class="inner user-main">
+        <div>
+            <p>
+                TOTAL : {{ToalUser}}
+            </p>
+        </div>
+        <table class="UserTable auto-index">
+            <thead>
+                <tr>
+                    <th>stt</th>
+                    <th>img</th>
+                    <th>name</th>
+                    <th>email</th>
+                    <th>timeRegister</th>
+                    <th>provider</th>
+                    <th>link</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let user of listUser">
+                    <td></td>
+                    <td class="avt"><img src="{{user.photoUrl}}" alt=""></td>
+                    <td>{{user.userName}}</td>
+                    <td>{{user.email ? user.email : ' ' }}</td>
+                    <td>{{user.timeRegister.toMillis() | date:'yyyy/MM/dd h:mm:ss a'}}</td>
+                    <td>{{user.provider}}</td>
+                    <td><a href="#">http:///</a></td>
+                </tr>
+                <!-- <tr>
+                    <td></td>
+                    <td class="avt"><img src="../../../assets/img/logoDelivery.png" alt=""></td>
+                    <td>Phùng Mạnh Quảng</td>
+                    <td>phungquang199@gmail.com</td>
+                    <td>123-123-123</td>
+                    <td>Facebook</td>
+                    <td>httpasdbahdsgb</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td class="avt"><img src="../../../assets/img/logoDelivery.png" alt=""></td>
+                    <td>Phùng Mạnh Quảng</td>
+                    <td>phungquang199@gmail.com</td>
+                    <td>123-123-123</td>
+                    <td>Facebook</td>
+                    <td>httpasdbahdsgb</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td class="avt"><img src="../../../assets/img/logoDelivery.png" alt=""></td>
+                    <td>Phùng Mạnh Quảng</td>
+                    <td>phungquang199@gmail.com</td>
+                    <td>123-123-123</td>
+                    <td>Facebook</td>
+                    <td>httpasdbahdsgb</td>
+                </tr> -->
+            </tbody>
+        </table>
+    </div>
+</div>

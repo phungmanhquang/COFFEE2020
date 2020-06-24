@@ -1,23 +1,26 @@
 <div class="insideContent insideForm">
-    <form id="ORDERFORM">
+    <form id="ORDERFORM" [formGroup]="formOrder" (ngSubmit)="order()">
         <div class="itemForm">
-            <input type="text">
-            <label for="name">Họ và tên</label>
+            <input type="text" formControlName="name" (focus)="hiddenErr()">
+            <label for="name">Họ và tên <span class="errorInput" *ngIf="nameErr">{{textErr}}</span></label>
         </div>
         <div class="itemForm">
-            <input type="text">
-            <label for="name">Địa chỉ</label>
+            <input type="text" formControlName="address" (focus)="hiddenErr()">
+            <label for="name">Địa chỉ <span class="errorInput" *ngIf="addressErr">{{textErr}}</span></label>
         </div>
         <div class="itemForm">
-            <input type="text">
-            <label for="name">Số điện thoại</label>
+            <input type="phone" formControlName="phone" (focus)="hiddenErr()">
+            <label for="name">Số điện thoại <span class="errorInput" *ngIf="phoneErr" >{{textErr}}</span></label>
         </div>
         <div class="itemForm">
-            <textarea name="" id="" cols="30" rows="10"></textarea>
+            <textarea name="" id="" cols="30" rows="10" formControlName="note">
+                nếu có !!!
+            </textarea>
             <label for="name">Ghi chú</label>
         </div>
         <div class="itemForm">
-            <button class="btnOrder" (click)="order(); $event.preventDefault()">Đặt Hàng</button>
+            <!-- (click)="order(); $event.preventDefault()" -->
+            <button class="btnOrder">Đặt Hàng</button>
         </div>
     </form>
 </div>
